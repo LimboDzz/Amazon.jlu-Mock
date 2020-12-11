@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon.jlu Mock</title>
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/popout.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Amazon.jlu <strong>Mock</strong></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li><a href="#">Admin</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Signup</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right hidden">
+              <li><a href="#">Wellcome xxx!</a></li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>ISBN</th>
+                  <th>Bookname</th>
+                  <th>Author</th>
+                  <th>PubDate</th>
+                  <th>Cost</th>
+                  <th>Stock</th>
+                  <th>Operation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="book in repo" :key="book.ISBN">
+                  <td scope="row">{{book.ISBN}}</td>
+                  <td>{{book.name}}</td>
+                  <td>{{book.author}}</td>
+                  <td>{{book.pubDate}}</td>
+                  <td>{{book.stock}}</td>
+                  <td>{{book.cost}}</td>
+                  <td class="row">
+                    <div class="col-xs-6 col-md-8">
+                      <input type="text" class="form-control" placeholder="1" />
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                      <button type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="prop-out">
+          <div class="login bd">
+              <header>
+                  <h1>|&nbsp;新用户注册</h1>
+                  <span></span>
+              </header>
+              <form action="">
+                  <div class="row">
+                      <p>用户名：</p>
+                      <input type="text">
+                      <span>6-20位字母、数字组成</span>
+                  </div>
+                  <div class="row">
+                      <p>密码：</p>
+                      <input type="password">
+                      <span>6-20位字母、数字组成</span>
+                  </div>
+                  <div class="row">
+                      <p>确认密码：</p>
+                      <input type="password">
+                  </div>
+                  <div class="row">
+                      <p>验证码：</p>
+                      <input type="text">
+                      <span>
+                        <img src="" alt="加载失败">
+                        <a href="">换一张</a>
+                      </span>
+                  </div>
+                  <div class="row check">
+                      <p></p>
+                      <input type="checkbox" id="read">
+                      <label for="read">
+                          我已经阅读并同意
+                          <a href="javascript:;">Amazon.jlu Mock用户注册协议</a>
+                      </label>
+                  </div>
+                  <div class="row no-star">
+                      <p></p>
+                      <input type="submit" value="立即注册" class="submit bd">已有账号，
+                      <a href="javascript:;">直接登录</a>
+                  </div>
+              </form>
+          </div>
+      </div>
+      </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script>
+      const app=new Vue({
+        el: "#app",
+        data: {
+          repo: [
+            {
+              ISBN: "30750170375978",
+              name: "魔道祖师",
+              genre: "网络",
+              author: "墨香铜臭",
+              pubDate: "2010-10-10",
+              cost: 99.99,
+              stock: 25
+            },
+            {
+              ISBN: "30750170375978",
+              name: "魔道祖师",
+              genre: "网络",
+              author: "墨香铜臭",
+              pubDate: "2010-10-10",
+              cost: 99.99,
+              stock: 25
+            }
+          ]
+        },
+        methods: {
+          
+        },
+        create(){
+          axios.get().then(
+            (response)=>{
+              console.log(response);
+            }
+          ).catch(
+            (err)=>{
+              console.log(err);
+            }
+          )
+        }
+      })
+    </script>
+  </body>
+</html>

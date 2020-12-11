@@ -1,0 +1,115 @@
+/* prop-out */
+.prop-out {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+.prop-out .login {
+    position: fixed;
+    box-sizing: border-box;
+    width: 600px;
+    height: 410px;
+    top: 50%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -225px;
+    background-color: #fff;
+    border-color: #dcdcdc;
+}
+.prop-out header {
+    width: 100%;
+    height: 58px;
+    line-height: 58px;
+    border-bottom: 1px solid #dcdcdc;
+    background-color: #f9f8f5;
+}
+.prop-out header h1 {
+    font-weight: 900;
+    float: left;
+    padding-left: 20px;
+    font-size: 18px;
+    color: #484b52;
+}
+.prop-out header span {
+    float: right;
+    width: 58px;
+    height: 58px;
+    background: url("../images/index/icon_getout_03.jpg") no-repeat 0 0;
+}
+.prop-out header span:hover {
+    cursor: pointer;
+}
+.prop-out form {
+    display: table;
+    margin: 20px 10px 0 0;
+}
+.prop-out form .row {
+    display: table-row;
+    height: 30px;
+    line-height: 50px;
+}
+
+.prop-out form .row p {
+    display: table-cell;
+    width: 114px;
+
+    text-align: right;
+    padding-left: 15px;
+    background: url("../images/index/icon_formstar_03.jpg") no-repeat 30px 20px;
+}
+.prop-out form .no-star p,
+.prop-out form .check p {
+    background-image: none;
+}
+.prop-out form .row input {
+    display: table-cell;
+    box-sizing: border-box;
+    width: 280px;
+    height: 30px;
+    border: 1px solid #dcdcdc;
+}
+.prop-out form .check input {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+}
+.prop-out form .row span {
+    color: #ccc;
+    margin-left: 10px;
+}
+.prop-out form .row a {
+    display: inline-block;
+    color: #0063a6;
+    text-decoration: underline;
+}
+.prop-out form .row .submit {
+    box-sizing: border-box;
+    width: 140px;
+    height: 50px;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+
+    background-color: #858585;
+}
+.prop-out form .row .submit:hover {
+    box-sizing: border-box;
+    width: 140px;
+    height: 50px;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+
+    background-color: #2d457e;
+}
+/* prop-out */
