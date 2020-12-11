@@ -1,1 +1,20 @@
 
+server:
+  port: 8080
+  servlet:
+    context-path: /amz
+
+spring:
+  application:
+    name: Amazon.jlu
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bizaar?characterEncoding=UTF-8&serverTimezone=GMT
+    username: root
+    password: 
+
+mybatis:
+  mapper-locations:
+  - classpath:com/vue/demo/mapper/*.xml
+  type-aliases-package: com.vue.entity
