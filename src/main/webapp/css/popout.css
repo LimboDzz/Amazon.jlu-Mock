@@ -1,3 +1,18 @@
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: #ccc;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #ccc;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #ccc;
+}
 /* prop-out */
 .prop-out {
     position: fixed;
@@ -7,7 +22,7 @@
     height: 100%;
     background-color: rgba(0,0,0,.5);
 }
-.prop-out .login {
+.prop-out .signup {
     position: fixed;
     box-sizing: border-box;
     width: 600px;
@@ -16,6 +31,18 @@
     left: 50%;
     margin-left: -300px;
     margin-top: -225px;
+    background-color: #fff;
+    border-color: #dcdcdc;
+}
+.prop-out .login {
+    position: fixed;
+    box-sizing: border-box;
+    width: 600px;
+    height: 350px;
+    top: 50%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -200px;
     background-color: #fff;
     border-color: #dcdcdc;
 }
@@ -65,6 +92,7 @@
     background-image: none;
 }
 .prop-out form .row input {
+    padding-left: 10px;
     display: table-cell;
     box-sizing: border-box;
     width: 280px;
