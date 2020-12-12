@@ -26,9 +26,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"
-              >Amazon.jlu <strong>Mock</strong></a
-            >
+            <a class="navbar-brand" href="#">Amazon.jlu <strong>Mock</strong></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -45,6 +43,9 @@
             <ul class="nav navbar-nav navbar-right" id="nouser">
               <li><a href="#" @click="toggleLogin">Login</a></li>
               <li><a href="#" @click="toggleSignup">Signup</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right hidden" id="welcome">
+              <li><a href="#">{{session.username}}'s shoppingCart</a></li>
             </ul>
           </div>
           <!-- /.navbar-collapse -->
@@ -90,132 +91,6 @@
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="prop-out" v-if="signupState.propIf">
-          <div class="signup bd">
-            <header>
-              <h1>|&nbsp;新用户注册</h1>
-              <span @click="toggleSignup"></span>
-            </header>
-            <form action="">
-              <div class="row">
-                <p>用户名：</p>
-                <input
-                  type="text"
-                  placeholder="username"
-                  v-model="user.username"
-                />
-                <span>6-20位字母、数字组成</span>
-              </div>
-              <div class="row">
-                <p>密码：</p>
-                <input
-                  type="password"
-                  placeholder="password"
-                  v-model="user.password"
-                />
-                <span>6-20位字母、数字组成</span>
-              </div>
-              <div class="row">
-                <p>确认密码：</p>
-                <input
-                  type="password"
-                  placeholder="confirm password"
-                  v-model="user.confirmation"
-                />
-              </div>
-              <div class="row">
-                <p>验证码：</p>
-                <input
-                  type="text"
-                  placeholder="security code"
-                  v-model="user.securityCode"
-                />
-                <span>
-                  <img src="" alt="加载失败" />
-                  <a href="">换一张</a>
-                </span>
-              </div>
-              <div class="row check">
-                <p></p>
-                <input type="checkbox" id="read" v-model="user.signed" />
-                <label for="read">
-                  我已经阅读并同意
-                  <a href="javascript:;">Amazon.jlu Mock用户注册协议</a>
-                </label>
-              </div>
-              <div class="row no-star">
-                <p></p>
-                <input
-                  type="button"
-                  value="立即注册"
-                  class="submit bd btn btn-primary"
-                  @click="signUpCheck"
-                  disabled="disabled"
-                />已有账号，
-                <a href="javascript:;">直接登录</a>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="prop-out" v-if="loginState.propIf">
-          <div class="login bd">
-            <header>
-              <h1>|&nbsp;用户登录</h1>
-              <span @click="toggleLogin"></span>
-            </header>
-            <form action="">
-              <div class="row">
-                <p>用户名：</p>
-                <input
-                  type="text"
-                  placeholder="username"
-                  v-model="user.username"
-                />
-                <span>6-20位字母、数字组成</span>
-              </div>
-              <div class="row">
-                <p>密码：</p>
-                <input
-                  type="password"
-                  placeholder="password"
-                  v-model="user.password"
-                />
-                <span>6-20位字母、数字组成</span>
-              </div>
-              <div class="row">
-                <p>验证码：</p>
-                <input
-                  type="text"
-                  placeholder="security code"
-                  v-model="user.securityCode"
-                />
-                <span>
-                  <img src="" alt="加载失败" />
-                  <a href="">换一张</a>
-                </span>
-              </div>
-              <div class="row check">
-                <!-- <p></p>
-                <input type="checkbox" id="read" v-model="user.signed" />
-                <label for="read">
-                  我已经阅读并同意
-                  <a href="javascript:;">Amazon.jlu Mock用户注册协议</a>
-                </label> -->
-              </div>
-              <div class="row no-star">
-                <p></p>
-                <input
-                  type="button"
-                  value="立即登录"
-                  class="submit bd btn btn-primary"
-                  @click="logInCheck"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
     <script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/vue.js"></script>
@@ -231,15 +106,10 @@
           },
           loginState: {
             propIf: false
-          }
+          },
+          session: ""
         },
         methods: {
-          toggleSignup(){
-            this.signupState.propIf=!this.signupState.propIf;
-          },
-          toggleLogin(){
-            this.loginState.propIf=!this.loginState.propIf;
-          },
           signUpCheck() {
             let {
               username: name,
@@ -291,6 +161,13 @@
             // Content-Type: application/json
             .post("http://localhost:8080/amz/user/login",{username,password})
             .then((res) => {
+              // console.log(res.data);
+              _this.session=res.data;
+              if(_this.session==""){
+                alert("not yet login");
+              }else{
+                _this.loginState.propIf=false;
+              }
             })
             .catch((err) => {
               console.error(err);
@@ -319,6 +196,10 @@
           signed() {
             let signUp=document.getElementsByClassName("submit bd")[0];
             signUp.toggleAttribute("disabled");
+          },
+          session(){
+            $("#welcome").toggleClass("hidden");
+            $("#nouser").toggleClass("hidden");
           }
         },
         created() {

@@ -5,6 +5,10 @@ server:
     context-path: /amz
 
 spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .*
   application:
     name: Amazon.jlu
   datasource:
