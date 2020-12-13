@@ -4,6 +4,7 @@ import Admin from '@/components/admin/Admin'
 import Repo from '@/components/repo/Repo'
 import Cart from '@/components/cart/Cart'
 import Signup from '@/components/signup/Signup'
+import Login from '@/components/login/Login';
 
 Vue.use(Router)
 
@@ -25,9 +26,13 @@ export default new Router({
       path: '/cart',
       component: Cart
     },
-    {                               // cart
+    {                               // signup
       path: '/signup',
       component: Signup
+    },
+    {                               // signup
+      path: '/login',
+      component: Login
     }
   ]
 })

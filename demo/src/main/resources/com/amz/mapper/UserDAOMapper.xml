@@ -5,16 +5,14 @@
         insert into t_user values(#{id},#{username},#{password},#{admin})
     </insert>
 
+    <select id="findByUsername" resultType="User">
+        select id,username,password,admin from t_user where username=#{username}
+    </select> 
 
     <!-- 保存用户
     <insert id="save" parameterType="User" >
         insert into t_user values (#{id},#{username},#{realname},#{password},#{sex})
-    </insert>
+    </insert>-->
 
-
-    登录的方法
-    <select id="ByUsernameAndPassword" resultType="User">
-        select id,username,realname,password,sex from t_user where username=#{username} and password=#{password}
-    </select> -->
 
 </mapper>

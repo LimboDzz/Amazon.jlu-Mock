@@ -1,9 +1,8 @@
 <template>
   <el-table
-    :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())
+    :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))
                                             || data.ISBN.includes(search)
-                                            || data.author.toLowerCase().includes(search.toLowerCase())
-    )"
+                                            || data.author.toLowerCase().includes(search.toLowerCase())"
     style="width: 80%;margin: 30px auto;">
     <el-table-column
       label="ISBN"

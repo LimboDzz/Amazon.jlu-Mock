@@ -6,16 +6,8 @@
   <el-form-item label="Password">
     <el-input type="password" v-model="ruleForm.password" placeholder="4-20 letters or numbers"></el-input>
   </el-form-item>
-  <el-form-item label="Confirm">
-    <el-input type="password" v-model="ruleForm.confirm" placeholder="re-input your password"></el-input>
-  </el-form-item>
-  <el-form-item label="User type">
-    <el-checkbox-group v-model="ruleForm.type">
-      <el-checkbox label="Admin" name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>
   <el-form-item>
-    <el-button type="primary" @click="onSubmit">Create</el-button>
+    <el-button type="primary" @click="onSubmit">Login</el-button>
     <el-button @click="onReset">Reset</el-button>
   </el-form-item>
 </el-form>
@@ -23,20 +15,18 @@
 
 <script>
   export default {
-    name: 'Signup',
+    name: 'Login',
     data() {
       return {
         ruleForm: {
           username: '',
-          password: '',
-          confirm: '',
-          type: []
+          password: ''
         }
       }
     },
     methods: {
       onSubmit() {
-        let {username:name,password:pass,confirm}=this.ruleForm;
+        let {username:name,password:pass}=this.ruleForm;
         console.log(this.ruleForm);
         if(!/^[a-zA-Z0-9]{4,20}$/.test(name)){
           this.$notify({
@@ -50,15 +40,8 @@
             message: 'Invalid password',
             type: 'warning'
           });
-        }else if(pass!=confirm){
-          this.$notify({
-            title: 'Warning',
-            message: 'Unmatched confirmation',
-            type: 'warning'
-          });
         }else{
-          this.ruleForm.admin=this.ruleForm.type.length==0?false:true;
-          this.$http.post("http://localhost:4025/user/save",this.ruleForm)
+          this.$http.post("http://localhost:4025/user/login",this.ruleForm)
           .then(res => {
             res.data.status?
             this.$notify({
@@ -66,11 +49,10 @@
               message: res.data.msg,
               type: 'success'
             }):
-            this.$notify.info({
-              title: 'Info',
+            this.$notify.error({
+              title: 'Error',
               message: res.data.msg
             });
-
           })
           .catch(err => {
             this.$notify.error({
@@ -83,9 +65,7 @@
       onReset() {
         this.ruleForm={
           username: '',
-          password: '',
-          confirm: '',
-          type: []
+          password: ''
         };
       }
     }
@@ -96,5 +76,8 @@
 .el-form-item__label {
   font-size: 16px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#code:hover {
+    cursor: pointer;
 }
 </style>
