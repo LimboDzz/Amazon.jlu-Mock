@@ -19,4 +19,12 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAll() {
         return bookDAO.findAll();
     }
+
+    @Override
+    public void save(Book book) {
+        if(bookDAO.findOne(book)==null)
+            bookDAO.save(book);
+        else
+            bookDAO.update(book);
+    }
 }

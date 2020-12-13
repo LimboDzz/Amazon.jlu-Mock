@@ -5,13 +5,18 @@
         select ISBN,name,author,pubDate,stock,cost from t_repo
     </select>
 
+    <select id="findOne" parameterType="Book" resultType="Book">
+        select ISBN,name,author,pubDate,stock,cost from t_repo where ISBN=#{ISBN}
+    </select>
 
-    <!-- 保存用户
-    <insert id="save" parameterType="User" >
-        insert into t_user values (#{id},#{username},#{realname},#{password},#{sex})
+    <insert id="save" parameterType="Book">
+        insert into t_repo values(#{ISBN},#{name},#{author},#{pubDate},#{stock},#{cost})
     </insert>
 
-
+    <update id="update" parameterType="Book">
+        UPDATE t_repo SET stock=#{stock}+stock,cost=#{cost} WHERE ISBN=#{ISBN}
+    </update>
+<!-- 
     登录的方法
     <select id="ByUsernameAndPassword" resultType="User">
         select id,username,realname,password,sex from t_user where username=#{username} and password=#{password}

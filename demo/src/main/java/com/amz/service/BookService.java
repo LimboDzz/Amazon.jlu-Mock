@@ -6,4 +6,6 @@ import com.amz.entity.Book;
 
 public interface BookService {
     List<Book> findAll();
+
+    void save(Book book);
 }

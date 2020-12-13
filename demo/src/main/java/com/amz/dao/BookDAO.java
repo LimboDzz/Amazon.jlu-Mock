@@ -9,4 +9,11 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BookDAO {
     // return all books in repo
     List<Book> findAll();
+
+	void update(Book book);
+
+	Book findOne(Book book);
+
+	void save(Book book);
+
 }

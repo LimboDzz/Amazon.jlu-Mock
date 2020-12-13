@@ -10,10 +10,10 @@
       active-text-color="#ffd04b"
     >
       <el-menu-item index="/repo_in">Amazon.jlu <u>Mock</u></el-menu-item>
-      <el-menu-item index="/cart" :disabled="!account.admin">
+      <el-menu-item index="/admin" :disabled="!account.admin">
         Admin</el-menu-item
       >
-      <el-menu-item index="/admin">
+      <el-menu-item index="/cart">
         Cart</el-menu-item
       >
       <el-menu-item class="ir" @click="logout">
