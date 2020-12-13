@@ -9,14 +9,21 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item index="1">Amazon.jlu <strong>Mock</strong></el-menu-item>
-      <el-menu-item index="3" disabled>
+      <el-menu-item index="/repo">Amazon.jlu <strong>Mock</strong></el-menu-item>
+      <el-menu-item index="/admin" disabled>
         Admin</el-menu-item
       >
-      <el-menu-item index="4">
+      <el-menu-item index="/cart">
         Cart</el-menu-item
       >
+      <el-menu-item index="/login" class="ir">
+        Login</el-menu-item
+      >
+      <el-menu-item index="/signup" class="ir">
+        Signup</el-menu-item
+      >
     </el-menu>
+
   </div>
 </template>
 
@@ -25,13 +32,14 @@ export default {
   name: "Nav",
   data() {
     return {
-      activeIndex: "1",
-      activeIndex2: "1",
+      activeIndex: "/repo",
+      activeIndex2: "/repo"
     };
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
+      this.$router.push(key);
     },
   },
 };
@@ -41,5 +49,10 @@ export default {
 .el-menu-item {
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.ir {
+  float: right !important; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
 }
 </style>

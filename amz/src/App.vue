@@ -1,14 +1,20 @@
 <template>
   <div id="app">
+    <Nav></Nav>
+    <!-- <Carousel></Carousel> -->
     <router-view/>
-    <router-link to="/index">Index</router-link>
-    <router-link to="/Admin">Admin</router-link>
   </div>
 </template>
 
 <script>
+import Nav from './components/Nav'
+import Carousel from './components/Carousel'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Nav,
+    Carousel
+  }
 }
 </script>
 

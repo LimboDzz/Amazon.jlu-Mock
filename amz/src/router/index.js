@@ -1,23 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Admin from '@/components/Admin'
-import Index from '@/components/Index'
+import Admin from '@/components/admin/Admin'
+import Repo from '@/components/repo/Repo'
+import Cart from '@/components/cart/Cart'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      redirect: '/Index'
+      path: '/',                    // root
+      redirect: '/repo'
     },
-    {
-      path: '/Admin',
+    {                               // repo
+      path: '/repo',
+      component: Repo
+    },
+    {                               // admin
+      path: '/admin',
       component: Admin
     },
-    {
-      path: '/index',
-      component: Index
+    {                               // cart
+      path: '/cart',
+      component: Cart
     }
   ]
 })
