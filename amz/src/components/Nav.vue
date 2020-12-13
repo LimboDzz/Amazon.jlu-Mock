@@ -9,7 +9,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item index="/repo">Amazon.jlu <strong>Mock</strong></el-menu-item>
+      <el-menu-item index="/repo">Amazon.jlu <u>Mock</u></el-menu-item>
       <el-menu-item index="/admin" disabled>
         Admin</el-menu-item
       >
@@ -32,10 +32,10 @@ export default {
   name: "Nav",
   data() {
     return {
-      activeIndex: "/repo",
-      activeIndex2: "/repo"
+      activeIndex: this.$route.path,
+      activeIndex2: this.$route.path
     };
-  },
+  },  
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);

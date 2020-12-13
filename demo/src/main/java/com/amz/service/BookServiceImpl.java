@@ -17,7 +17,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAll() {
-        // sessionCheck
         return bookDAO.findAll();
     }
 }

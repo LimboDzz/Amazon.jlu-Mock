@@ -7,7 +7,7 @@
     style="width: 80%;margin: 30px auto;">
     <el-table-column
       label="ISBN"
-      prop="ISBN">
+      prop="isbn">
     </el-table-column>
     <el-table-column
       label="Bookname"
@@ -54,23 +54,7 @@ import InN from '../InN';
     name: 'Repo',
     data() {
       return {
-        tableData: [{
-          ISBN: "80759479527979",
-          name: '数据结构',
-          author: '杨博',
-          pubDate: '2016-05-03',
-          stock: 5,
-          cost: 60
-        },
-        {
-          ISBN: "214718519379",
-          name: '离散数学',
-          author: '于海鸿',
-          pubDate: '2016-05-03',
-          stock: 5,
-          cost: 60
-        }
-        ],
+        tableData: [],
         search: '',
       }
     },
@@ -84,7 +68,18 @@ import InN from '../InN';
     },
     components: {
       InN
+    },
+    created(){
+      this.$http.get("http://localhost:4025/book/findall")
+      .then(res => {
+        console.log(res);
+        this.tableData=res.data;
+      })
+      .catch(err => {
+        console.error(err); 
+      })
     }
+
   }
 </script>
 
