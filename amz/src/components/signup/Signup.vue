@@ -1,27 +1,31 @@
 <template>
-<el-form :model="ruleForm" ref="ruleForm" label-width="120px" style="width:40%;margin:100px auto;">
-  <el-form-item label="Username">
-    <el-input v-model="ruleForm.username" placeholder="4-20 letters or numbers"></el-input>
-  </el-form-item>
-  <el-form-item label="Password">
-    <el-input type="password" v-model="ruleForm.password" placeholder="4-20 letters or numbers"></el-input>
-  </el-form-item>
-  <el-form-item label="Confirm">
-    <el-input type="password" v-model="ruleForm.confirm" placeholder="re-input your password"></el-input>
-  </el-form-item>
-  <el-form-item label="User type">
-    <el-checkbox-group v-model="ruleForm.type">
-      <el-checkbox label="Admin" name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="onSubmit">Create</el-button>
-    <el-button @click="onReset">Reset</el-button>
-  </el-form-item>
-</el-form>
+<div>
+  <Nav></Nav>
+  <el-form :model="ruleForm" ref="ruleForm" label-width="120px" style="width:40%;margin:100px auto;">
+    <el-form-item label="Username">
+      <el-input v-model="ruleForm.username" placeholder="4-20 letters or numbers"></el-input>
+    </el-form-item>
+    <el-form-item label="Password">
+      <el-input type="password" v-model="ruleForm.password" placeholder="4-20 letters or numbers"></el-input>
+    </el-form-item>
+    <el-form-item label="Confirm">
+      <el-input type="password" v-model="ruleForm.confirm" placeholder="re-input your password"></el-input>
+    </el-form-item>
+    <el-form-item label="User type">
+      <el-checkbox-group v-model="ruleForm.type">
+        <el-checkbox label="Admin" name="type"></el-checkbox>
+      </el-checkbox-group>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSubmit">Create</el-button>
+      <el-button @click="onReset">Reset</el-button>
+    </el-form-item>
+  </el-form>
+  </div>
 </template>
 
 <script>
+import Nav from '../nav/Out'
   export default {
     name: 'Signup',
     data() {
@@ -88,6 +92,9 @@
           type: []
         };
       }
+    },
+    components: {
+      Nav
     }
   }
 </script>

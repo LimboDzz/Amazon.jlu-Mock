@@ -42,8 +42,7 @@
         <InN style="margin-right: 10px;"></InN>
         <el-button
           type="plain"
-          size="medium"
-          @click="pop">Purchase</el-button>
+          size="medium">Purchase</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -51,26 +50,36 @@
 </template>
 
 <script>
-import Nav from '../nav/Out';
+import Nav from '../nav/In';
 import InN from '../InN';
   export default {
-    name: 'Repo',
+    name: 'Repo_in',
     data() {
       return {
         tableData: [],
-        search: ''
+        search: '',
+        account: {}
       }
     },
     methods: {
-      pop(){
-        this.$message('Please login first.');
-      }
     },
     created(){
       this.$http.get("http://localhost:4025/book/findall")
       .then(res => {
         console.log(res);
         this.tableData=res.data;
+      })
+      .catch(err => {
+        console.error(err); 
+      })
+      this.$http.get("http://localhost:4025/user/loginUser")
+      .then(res => {
+        console.log(res.data);
+        this.account=res.data;
+        if(this.account == null){
+          console.log("no account back");
+          this.$router.push({path: '/'})
+        }
       })
       .catch(err => {
         console.error(err); 

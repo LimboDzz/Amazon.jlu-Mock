@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Nav></Nav>
 <el-form :model="ruleForm" ref="ruleForm" label-width="120px" style="width:40%;margin:100px auto;">
   <el-form-item label="Username">
     <el-input v-model="ruleForm.username" placeholder="4-20 letters or numbers"></el-input>
@@ -11,9 +13,11 @@
     <el-button @click="onReset">Reset</el-button>
   </el-form-item>
 </el-form>
+</div>
 </template>
 
 <script>
+import Nav from '../nav/Out';
   export default {
     name: 'Login',
     data() {
@@ -32,7 +36,8 @@
           this.$notify({
             title: 'Warning',
             message: 'Invalid username',
-            type: 'warning'
+            type: 'warning',
+
           });
         }else if(!/^[a-zA-Z0-9]{4,20}$/.test(pass)){
           this.$notify({
@@ -43,16 +48,19 @@
         }else{
           this.$http.post("http://localhost:4025/user/login",this.ruleForm)
           .then(res => {
-            res.data.status?
-            this.$notify({
-              title: 'Success',
-              message: res.data.msg,
-              type: 'success'
-            }):
-            this.$notify.error({
-              title: 'Error',
-              message: res.data.msg
-            });
+            if(res.data.status)
+            {
+              this.$notify({
+                title: 'Success',
+                message: res.data.msg,
+                type: 'success'
+              });
+              this.$router.push({path: '/repo_in'});
+            }else
+              this.$notify.error({
+                title: 'Error',
+                message: res.data.msg,
+              });
           })
           .catch(err => {
             this.$notify.error({
@@ -68,6 +76,9 @@
           password: ''
         };
       }
+    },
+    components: {
+      Nav
     }
   }
 </script>

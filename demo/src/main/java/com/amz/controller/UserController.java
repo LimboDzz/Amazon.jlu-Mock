@@ -1,28 +1,18 @@
 package com.amz.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.druid.sql.ast.statement.SQLIfStatement.Else;
 import com.amz.entity.User;
 import com.amz.service.UserService;
-import com.amz.utils.ValidateImageCodeUtils;
 import com.amz.vo.Result;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 // @RestController return JSON data
@@ -64,17 +54,28 @@ public class UserController {
     public Result login(@RequestBody User user) {
         Result result = new Result();
         List<User> res = us.findByUsername(user.getUsername());
-        
-        if(res.isEmpty() || !res.get(0).getPassword().equals(user.getPassword())){
+
+        if (res.isEmpty() || !res.get(0).getPassword().equals(user.getPassword())) {
             result.setStatus(false);
             result.setMsg("Wrong username or password. Please try again.");
         } else {
             // System.out.println(code);
             // System.out.println(code.equals(cc));
-            cur = user;
+            cur = res.get(0);
+            System.out.println(cur);
             result.setMsg("Welcome " + cur.getUsername() + "!");
         }
         return result;
     }
 
+    @GetMapping("loginUser")
+    public User loginUser() {
+        System.out.println(cur);
+        return cur;
+    }
+    @CrossOrigin
+    @GetMapping("logout")
+    public void logout() {
+        cur = null;
+    }
 }

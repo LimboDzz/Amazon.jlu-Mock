@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Admin from '@/components/admin/Admin'
 import Repo from '@/components/repo/Repo'
+import Repo_in from '@/components/repo/Repo_in'
 import Cart from '@/components/cart/Cart'
 import Signup from '@/components/signup/Signup'
 import Login from '@/components/login/Login';
@@ -17,6 +18,10 @@ export default new Router({
     {                               // repo
       path: '/repo',
       component: Repo
+    },
+    {                               // repo
+      path: '/repo_in',
+      component: Repo_in
     },
     {                               // admin
       path: '/admin',

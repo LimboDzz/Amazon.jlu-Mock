@@ -13,7 +13,7 @@
       <el-menu-item index="/admin" disabled>
         Admin</el-menu-item
       >
-      <el-menu-item index="/cart">
+      <el-menu-item index="/cart" disabled>
         Cart</el-menu-item
       >
       <el-menu-item index="/login" class="ir">
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: "Nav",
+  name: "Out",
   data() {
     return {
       activeIndex: this.$route.path,
@@ -40,8 +40,8 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
       this.$router.push(key);
-    },
-  },
+    }
+  }
 };
 </script>
 
