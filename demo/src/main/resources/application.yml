@@ -1,0 +1,21 @@
+server:
+    port: 4025
+
+
+
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  application:
+    name: amz  #应用服务名称
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver #注册驱动
+    url: jdbc:mysql://localhost:3306/bizaar?characterEncoding=UTF-8&serverTimezone=GMT
+    username: root
+    password: 
+
+mybatis:
+  mapper-locations: classpath:com/amz/mapper/*.xml #mapper配置文件的位置
+  type-aliases-package: com.amz.entity
