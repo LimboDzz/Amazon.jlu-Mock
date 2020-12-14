@@ -19,6 +19,9 @@
       <el-menu-item class="ir" @click="logout">
       {{account.username}} Logout</el-menu-item
       >
+      <el-menu-item class="ir" @click="asset">￥ 
+      {{account.asset.toFixed(2)}}</el-menu-item
+      >
     </el-menu>
 
   </div>
@@ -59,6 +62,12 @@ export default {
       .catch(err => {
         console.error(err); 
       })
+    },
+    asset(){
+      this.$message({
+          message: 'Asset management is under development...',
+          type: 'message'
+        });
     }
   },
   created(){

@@ -39,10 +39,13 @@
           placeholder="Type to search"/>
       </template>
       <template slot-scope="scope">
-        <InN style="margin-right: 10px;"></InN>
+        <template>
+        <el-input-number v-model="num[scope.$index]" controls-position="right" :min="1" :max="999" style="width: 100px;margin-right: 10px;" ></el-input-number>
+        </template>
         <el-button
           type="plain"
-          size="medium">Purchase</el-button>
+          size="medium"
+          @click="handlePurchase(scope.$index, scope.row)">Add to Cart</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -58,11 +61,37 @@ import InN from '../InN';
       return {
         tableData: [],
         search: '',
-        account: {}
+        account: {},
+        num: [],
       }
     },
     methods: {
-    },
+      handlePurchase(index, row){
+        console.log(index, row);
+        if(this.num[index]>0){
+          // 深克隆
+          // 将原对象中的数据全部复制过去，新对象和原对象毫无关系，互不影响
+          let mock=JSON.parse(JSON.stringify(row));
+          mock.stock=this.num[index];
+          this.$http.post("http://localhost:4025/cart/save",mock)
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.error(err); 
+          })
+          // console.log(row,mock);
+          // this.$message({
+          //   message: `${this.num[index]} x《${row.name}》 added.`,
+          //   type: 'success'
+          // });
+        }
+        else{
+          this.$message.error('Please input number.');
+        }
+        }
+       
+      },
     created(){
       this.$http.get("http://localhost:4025/book/findall")
       .then(res => {
@@ -89,8 +118,8 @@ import InN from '../InN';
       Nav,
       InN
     }
-
   }
+    
 </script>
 
 <style>

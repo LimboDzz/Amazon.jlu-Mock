@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findByUsername(String username) {
         return userDAO.findByUsername(username);
     }
+
+    @Override
+    public void order(User cur) {
+        userDAO.order(cur);
+    }
 }

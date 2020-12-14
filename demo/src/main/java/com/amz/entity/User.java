@@ -8,4 +8,5 @@ public class User {
     private String username;
     private String password;
     private boolean admin;
+    private double asset;
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.amz.dao.CartDAO">
+    <!-- findAll -->
+    <select id="findAll" resultType="Book">
+        select ISBN,name,author,pubDate,stock,cost from t_cart
+    </select>
+
+    <select id="findOne" parameterType="Book" resultType="Book">
+        select ISBN,name,author,pubDate,stock,cost from t_cart where ISBN=#{ISBN}
+    </select>
+
+    <insert id="save" parameterType="Book">
+        insert into t_cart values(#{ISBN},#{name},#{author},#{pubDate},#{stock},#{stock}*#{cost})
+    </insert>
+
+    <update id="update" parameterType="Book">
+        UPDATE t_cart SET stock=#{stock}+stock,cost=#{cost}*#{stock}+cost WHERE ISBN=#{ISBN}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        delete from t_cart where ISBN=#{isbn}
+    </delete>
+    <delete id="deleteAll">
+        delete from t_cart
+    </delete>
+<!-- 
+    登录的方法
+    <select id="ByUsernameAndPassword" resultType="User">
+        select id,username,realname,password,sex from t_user where username=#{username} and password=#{password}
+    </select> -->
+
+</mapper>

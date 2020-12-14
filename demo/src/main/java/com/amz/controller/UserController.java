@@ -23,11 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     private UserService us;
+
     private User cur = null;
 
-    public boolean isLogin() {
-        return cur != null;
-    }
     @PostMapping("save")
     // @RequestBody接收前端传递的json字符串中的数据的(请求体中的数据)
     // GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交
@@ -73,9 +71,29 @@ public class UserController {
         System.out.println(cur);
         return cur;
     }
-    @CrossOrigin
     @GetMapping("logout")
     public void logout() {
         cur = null;
+    }
+    @GetMapping("order")
+    public Result order(double sum) {
+        Result res = new Result();
+        if (sum > cur.getAsset()) {
+            res.setStatus(false);
+            res.setMsg("You don't have enough money to pay.");
+            return res;
+        }
+        System.out.println(cur);
+        cur.setAsset(cur.getAsset() - sum);
+        try {
+            us.order(cur);
+            System.out.println(sum);
+            res.setMsg("Order completed");
+        } catch (Exception e) {
+            cur.setAsset(cur.getAsset() + sum);
+            res.setStatus(false);
+            res.setMsg("Fail to pay. Please try again.");
+        }
+        return res;
     }
 }

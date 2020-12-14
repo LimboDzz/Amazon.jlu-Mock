@@ -8,4 +8,6 @@ public interface UserService {
     void save(User user);
 
     List<User> findByUsername(String name);
+
+	void order(User cur);
 }

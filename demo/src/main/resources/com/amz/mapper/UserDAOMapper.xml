@@ -2,17 +2,15 @@
 <mapper namespace="com.amz.dao.UserDAO">
 
     <insert id="save" parameterType="User">
-        insert into t_user values(#{id},#{username},#{password},#{admin})
+        insert into t_user values(#{id},#{username},#{password},#{admin},1000)
     </insert>
 
     <select id="findByUsername" resultType="User">
-        select id,username,password,admin from t_user where username=#{username}
-    </select> 
+        select id,username,password,admin,asset from t_user where username=#{username}
+    </select>
 
-    <!-- 保存用户
-    <insert id="save" parameterType="User" >
-        insert into t_user values (#{id},#{username},#{realname},#{password},#{sex})
-    </insert>-->
-
+    <update id="order" parameterType="User">
+        UPDATE t_user SET asset=#{asset} WHERE id=#{id}
+    </update>
 
 </mapper>
