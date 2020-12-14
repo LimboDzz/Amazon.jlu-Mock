@@ -47,12 +47,12 @@ export default {
 
 <style>
 .el-menu-item {
-  font-size: 20px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 20px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
 }
 .ir {
   float: right !important; 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-size: 16px !important;
 }
 </style>
