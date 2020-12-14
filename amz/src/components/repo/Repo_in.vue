@@ -40,7 +40,7 @@
       </template>
       <template slot-scope="scope">
         <template>
-        <el-input-number v-model="num[scope.$index]" controls-position="right" :min="1" :max="999" style="width: 100px;margin-right: 10px;" ></el-input-number>
+        <el-input-number placeholder="0" v-model="num[scope.$index]" controls-position="right" :min="0" :max="999" style="width: 100px;margin-right: 10px;" ></el-input-number>
         </template>
         <el-button
           type="plain"
@@ -81,10 +81,10 @@ import InN from '../InN';
             console.error(err); 
           })
           // console.log(row,mock);
-          // this.$message({
-          //   message: `${this.num[index]} x《${row.name}》 added.`,
-          //   type: 'success'
-          // });
+          this.$message({
+            message: `${this.num[index]} X <${row.name}> added.`,
+            type: 'success'
+          });
         }
         else{
           this.$message.error('Please input number.');

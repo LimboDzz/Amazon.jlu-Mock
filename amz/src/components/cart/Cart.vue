@@ -129,8 +129,8 @@ import InN from '../InN';
           })
         this.$http.get("http://localhost:4025/cart/deleteAll")
             .then(res=>{
-              console.log(res.data);
-              this.$router.push({path: '/repo_in'})
+              // console.log(res.data);
+              this.login();
             }).catch((err)=>{
               console.log(err);
             })
