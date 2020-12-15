@@ -56,8 +56,9 @@ export default {
     logout(){
       this.$http.get("http://localhost:4025/user/logout")
       .then(res => {
-        console.log("delete");
         this.$router.push({path: '/'});
+        this.$http.get("http://localhost:4025/cart/deleteAll")
+        .then(res=>{})
       })
       .catch(err => {
         console.error(err); 
