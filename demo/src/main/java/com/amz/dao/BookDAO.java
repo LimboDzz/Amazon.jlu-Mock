@@ -16,4 +16,6 @@ public interface BookDAO {
 
 	void save(Book book);
 
+	void updateByCart(Book book);
+
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nav></Nav>
+    <Nav :key="key"></Nav>
         <el-table
     :data="tableData"
     border
@@ -58,10 +58,14 @@ import InN from '../InN';
         tableData: [],
         search: '',
         account: {},
-        sum: 0
+        sum: 0,
+        key: 0
       }
     },
     methods: {
+      handleUpdateClick() {
+        this.key += 1 
+      },
       handleDelete(index, row) {
         this.$http.post("http://localhost:4025/cart/delete",row)
         .then(res => {
@@ -120,20 +124,42 @@ import InN from '../InN';
         return sums;
       },
       open() {
-        this.$http.get("http://localhost:4025/user/order?sum="+this.sum)
+        this.$http.get("http://localhost:4025/book/updateAll")
           .then(res => {
-
+              let {status,msg}=res.data;
+              if(status){
+                this.$http.get("http://localhost:4025/user/order?sum="+this.sum)
+                .then(res => {
+                    this.$message({
+                      message: res.data.msg,
+                      type: 'success'
+                    });
+                    this.$http.get("http://localhost:4025/cart/deleteAll")
+                    .then(res=>{
+                      this.login();
+                      this.handleUpdateClick()
+                    }).catch((err)=>{
+                      console.log(err);
+                      return;
+                    })
+                })            
+                .catch(err => {
+                    console.error(err);
+                    return;
+                })
+              }
+              else {
+                this.$message({
+                  message: res.data.msg,
+                  type: 'info'
+                });
+                return;
+              }
           })
           .catch(err => {
               console.error(err); 
+              return;
           })
-        this.$http.get("http://localhost:4025/cart/deleteAll")
-            .then(res=>{
-              // console.log(res.data);
-              this.login();
-            }).catch((err)=>{
-              console.log(err);
-            })
       },
       login(){
               this.$http.get("http://localhost:4025/cart/findall")

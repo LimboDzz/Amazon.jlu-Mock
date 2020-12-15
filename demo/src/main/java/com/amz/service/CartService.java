@@ -13,5 +13,4 @@ public interface CartService {
 	void delete(String isbn);
 
 	void deleteAll();
-
 }

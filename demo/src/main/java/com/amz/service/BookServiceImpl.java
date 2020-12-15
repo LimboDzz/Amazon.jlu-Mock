@@ -27,4 +27,15 @@ public class BookServiceImpl implements BookService {
         else
             bookDAO.update(book);
     }
+
+    @Override
+    public Book findOne(Book book) {
+        return bookDAO.findOne(book);
+    }
+
+    @Override
+    public void updateByCart(Book b) {
+        bookDAO.updateByCart(b);
+    }
+
 }

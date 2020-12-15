@@ -16,6 +16,10 @@
     <update id="update" parameterType="Book">
         UPDATE t_repo SET stock=#{stock}+stock,cost=#{cost} WHERE ISBN=#{ISBN}
     </update>
+
+    <update id="updateByCart" parameterType="Book">
+        UPDATE t_repo SET stock=stock-#{stock} WHERE ISBN=#{ISBN}
+    </update>
 <!-- 
     登录的方法
     <select id="ByUsernameAndPassword" resultType="User">

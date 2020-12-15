@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.amz.entity.Book;
 import com.amz.service.BookService;
+import com.amz.service.CartService;
 import com.amz.vo.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 // @RestController return JSON data
 @RestController
 @RequestMapping("book")
@@ -23,6 +25,8 @@ public class BookController {
     
     @Autowired
     private BookService bs;
+    @Autowired
+    private CartService cs;
 
     @GetMapping("findall")
     public List<Book> findAll() {
@@ -42,6 +46,28 @@ public class BookController {
         } catch (Exception e) {
             result.setStatus(false);
             result.setMsg("Fail to order. Please try again.");
+        }
+        return result;
+    }
+
+    @GetMapping("updateAll")
+    public Result updateAll() {
+        Result result = new Result();
+        List<Book> cart = cs.findAll();
+        for (Book b : cart) {
+            Book book = bs.findOne(b);
+            if (book.getStock() < b.getStock()) {
+                result.setStatus(false);
+                result.setMsg("Out of stock. Please change your purchase number.");
+            } else {
+                try {
+                    bs.updateByCart(b);
+                    result.setMsg("update ok");
+                } catch (Exception e) {
+                    result.setStatus(false);
+                    result.setMsg("unable to update");
+                }
+            }
         }
         return result;
     }
